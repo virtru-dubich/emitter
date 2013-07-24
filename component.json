@@ -1,5 +1,6 @@
 {
   "name": "emitter",
+  "repo": "virtru-components/emitter",
   "description": "Event emitter",
   "keywords": ["emitter", "events"],
   "dependencies": {
