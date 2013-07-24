@@ -136,6 +136,38 @@ Emitter.prototype.emit = function(event){
   return this;
 };
 
+
+/**
+ * Emit `event` with the given args and allow
+ * the event to be canceled.  In some circumstances
+ * a listener of an event may want to signal to the
+ * emitter to cancel the event.  This function allows
+ * that to happen.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Boolean} Returns false if canceled
+ */
+
+Emitter.prototype.cancelableEmit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks[event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      var result = callbacks[i].apply(this, args);
+      result = result === undefined ? true : result;
+      if (!result) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+
 /**
  * Return array of callbacks for `event`.
  *
