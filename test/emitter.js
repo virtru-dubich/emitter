@@ -39,6 +39,28 @@ describe('Emitter', function(){
     })
   })
 
+  describe('.cancelableEmit(event, fn)', function(){
+    it('should cancel emit', function(){
+      var emitter = new Emitter;
+      var calls = [];
+
+      emitter.on('foo', function(val){
+        calls.push('one', val);
+      });
+
+      emitter.on('foo', function(val){
+        return false;
+      });
+
+      emitter.cancelableEmit('foo', 1);
+      emitter.cancelableEmit('bar', 1);
+      var result = emitter.cancelableEmit('foo', 2);
+      result.should.be.false;
+
+      calls.should.eql([ 'one', 1, 'one', 2 ]);
+    })
+  })
+
   describe('.once(event, fn)', function(){
     it('should add a single-shot listener', function(){
       var emitter = new Emitter;
