@@ -1,6 +1,6 @@
 {
   "name": "emitter",
-  "repository": 'virtru-components/emitter',
+  "repository": "virtru-components/emitter",
   "description": "Event emitter",
   "version": "1.1.1",
   "dependencies": {
