@@ -1,3 +1,9 @@
+# ARCHIVAL NOTICE
+
+> [!NOTE]
+> This repo has been archived with the library moved to the [Virtru js-lib-monorepo](https://github.com/virtru-corp/js-lib-monorepo).
+
+
 # Emitter
 
   Event emitter component.
